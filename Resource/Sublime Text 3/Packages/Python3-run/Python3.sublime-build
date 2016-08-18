@@ -1,0 +1,19 @@
+{
+    "shell_cmd": "python3 -u \"$file\"",
+    "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+    "selector": "source.python, source.py, source.py3",
+
+    "env": {"PYTHONIOENCODING": "utf-8"},
+
+    "variants":
+    [
+        {
+            "name": "Run",
+            "shell_cmd": "/usr/local/bin/sublime-terminal \"$file\" python3",
+        },
+        {
+            "name": "Syntax Check",
+            "shell_cmd": "python3 -m py_compile \"${file}\"",
+        }
+    ]
+}

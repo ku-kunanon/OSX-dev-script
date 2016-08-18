@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+if [[ -x "$1" ]]
+then
+    IS_EXEC="true"
+else
+    IS_EXEC="false"
+fi
+
+
+osascript <<END 
+property t_delay : 0.2
+
+
+on is_running(appName)
+	tell application "System Events" to (name of processes) contains appName
+end is_running
+
+set isItRunning to is_running("Terminal")
+
+if isItRunning then
+	tell application "Terminal"
+		activate
+    delay t_delay
+		if (window 1 exists) then	
+        --  display dialog "window 1 exists " & the name of the front window
+			-- check to see if its busy
+			if (window 1 is busy) then
+        --  display dialog "window 1 is busy doing command t"
+				-- It is busy so open a new tab 
+				tell application "System Events" to keystroke "t" using command down
+			end if	
+
+            -- nead a real test tp see if the window is actually open becasue on rare
+            -- occasions Terminal reports having a window open when it doesn't.
+
+		else
+			-- create it
+         --   display dialog "window 1 doesn't exist - doing command n"
+			tell application "System Events" to keystroke "n" using command down
+            
+		end if
+	end tell
+else
+	tell application "Terminal"
+		activate
+	end tell
+end if
+
+tell application "Terminal"
+activate
+  -- scroll the terminal window to the bottom.
+  -- key code 119 is fn and the right cursor  
+  tell application "System Events" to keystroke key code 119 
+
+	delay t_delay
+    if "$IS_EXEC" = "true" then
+        set script_string to "$2" & " " & quoted form of "$1" & " && echo"
+    else
+        set script_string to "$2" & " " & quoted form of "$1" 
+    end if
+
+  do script script_string in window 1
+
+end tell
+END

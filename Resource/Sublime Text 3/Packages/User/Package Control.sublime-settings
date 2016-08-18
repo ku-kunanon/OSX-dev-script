@@ -1,0 +1,15 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"FileHeader",
+		"Git",
+		"GitGutter",
+		"Package Control",
+		"Python PEP8 Autoformat",
+		"SublimeAStyleFormatter"
+	]
+}
