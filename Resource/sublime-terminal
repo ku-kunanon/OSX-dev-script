@@ -7,6 +7,12 @@ else
     IS_EXEC="false"
 fi
 
+if [[ "$2" -eq "java" ]]
+then
+  FILE_NAME=$(basename "$1")
+  FILE_PATH=$(dirname "$1")
+  IS_EXEC="false"
+fi
 
 osascript <<END 
 property t_delay : 0.2
@@ -61,9 +67,15 @@ activate
             set script_string to quoted form of "$1" & " && echo"
         end if
     else
-        set script_string to "$2" & " " & quoted form of "$1" 
+        if "$2" = "java" then
+          -- change directory for run java
+          -- do script "cd " & quoted form of "$FILE_PATH" in window 1
+          set script_string to "$2" & " -classpath" & " " & quoted form of "$FILE_PATH" & " " & quoted form of "$FILE_NAME"
+        else
+          set script_string to "$2" & " " & quoted form of "$1"
+        end if
+         
     end if
-
   do script script_string in window 1
 
 end tell
