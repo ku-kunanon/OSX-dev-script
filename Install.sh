@@ -2,8 +2,8 @@
 
 # @Author: feelingfree
 # @Date:   2016-08-18 16:16:53
-# @Last Modified by:   feelingfree
-# @Last Modified time: 2016-08-18 18:01:03
+# @Last Modified by:   Feelingfree
+# @Last Modified time: 2017-01-09 11:57:29
 
 # install Homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -14,6 +14,9 @@ brew install python3
 # remove and create link python3
 brew unlink python3
 brew link python3
+
+# install golang
+brew install go
 
 # install sublime-text-3
 brew cask install sublime-text
