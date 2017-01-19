@@ -8,7 +8,7 @@
 	[
 		{
 			"name": "Run",
-			"shell_cmd": "go build -o \"${file_path}/${file_base_name}\" \"${file}\" && \"/usr/local/bin/sublime-terminal\" \"${file_path}/${file_base_name}\" go"
+			"shell_cmd": "go build -o \"${file_path}/${file_base_name}\" \"${file}\" && \"/usr/local/bin/sublime-terminal\" \"${file_path}/${file_base_name}\""
 		}
 	]
 }
