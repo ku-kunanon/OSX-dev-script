@@ -36,3 +36,6 @@ sudo chmod u+x /usr/local/bin/sublime-terminal
 sudo rm -r ~/Library/Application\ Support/Sublime\ Text\ 3/
 cp -r ./Resource/Sublime\ Text\ 3/ ~/Library/Application\ Support/Sublime\ Text\ 3/
 
+# Install Python3 package 
+pip3 install numpy
+pip3 install matplotlib
